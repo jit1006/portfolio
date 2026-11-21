@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant hover (&:hover);
+
 @theme inline {
   --color-bg: #1a1b26;
   --color-surface: #24283b;
@@ -10,40 +12,91 @@
 
   --color-cyan: #7dcfff;
   --color-mint: #73daca;
+  --color-teal: #2ac3de;
   --color-amber: #e0af68;
   --color-lavender: #bb9af7;
   --color-coral: #f7768e;
   --color-indigo: #7aa2f7;
-  --color-teal: #2ac3de;
 
-  --font-mono: var(--font-jetbrains);
+  --font-mono: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-/* Scrollbar styling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 96px;
+  background-color: #1a1b26;
+  color: #e0e6f8;
+}
+
+body {
+  background-color: #1a1b26;
+  color: #e0e6f8;
+  font-family: var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-track {
   background: #1a1b26;
 }
+
 ::-webkit-scrollbar-thumb {
   background: #3b4261;
   border-radius: 4px;
 }
 
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 100px;
+::-webkit-scrollbar-thumb:hover {
+  background: #7dcfff;
 }
 
-body {
-  background: #1a1b26;
-  color: #e0e6f8;
-  font-family: var(--font-jetbrains), 'JetBrains Mono', monospace;
-}
-
-/* Selection color */
 ::selection {
-  background: rgba(125, 207, 255, 0.25);
-  color: #e0e6f8;
+  background: rgba(125, 207, 255, 0.22);
+  color: #7dcfff;
+}
+
+@keyframes popIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 4px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.tooltip-pop {
+  animation: popIn 160ms ease-out forwards;
+}
+
+@keyframes confettiBurst {
+  0% {
+    opacity: 1;
+    transform: translate(0, 0) scale(0.4);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate(var(--tx), var(--ty)) scale(1);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(var(--tx), var(--ty)) scale(0.6);
+  }
+}
+
+.confetti-particle {
+  animation: confettiBurst 750ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .confetti-particle {
+    display: none;
+  }
 }

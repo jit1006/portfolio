@@ -6,13 +6,14 @@ import "./globals.css";
 const jetbrains = JetBrains_Mono({
   variable: "--font-jetbrains",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "Jitendra Kumar Rana | Developer Portfolio",
   description:
-    "Backend & ML Engineer — building scalable apps and intelligent systems.",
+    "Backend & ML Engineer — building scalable full-stack apps and deep learning systems.",
 };
 
 export default function RootLayout({
@@ -22,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${jetbrains.variable} antialiased`}>
-      <body className="min-h-screen bg-bg font-mono text-text">
+      <body className="min-h-screen bg-bg font-mono text-text selection:bg-cyan/25 selection:text-cyan">
         {children}
         <Toaster
           position="bottom-right"
@@ -31,8 +32,10 @@ export default function RootLayout({
               background: "#24283b",
               color: "#e0e6f8",
               border: "1px solid #3b4261",
+              boxShadow: "4px 4px 0px #7dcfff",
               fontFamily: "var(--font-jetbrains), monospace",
-              fontSize: "0.85rem",
+              fontSize: "0.82rem",
+              borderRadius: "10px",
             },
           }}
         />

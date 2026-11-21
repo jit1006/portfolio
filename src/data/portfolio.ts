@@ -9,11 +9,12 @@ export type AccentColor =
 
 export interface BioSegment {
   text: string;
-  highlight?: boolean;
+  highlight?: boolean; // Renders in warm amber (#e0af68)
 }
 
 export interface SkillItem {
   name: string;
+  /** Suggested react-icons/si or lucide-react icon name */
   icon: string;
   category:
     | "language"
@@ -37,6 +38,18 @@ export interface ProjectItem {
   githubUrl: string;
   liveUrl?: string;
   image: string;
+}
+
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+  score: string;
+}
+
+export interface AchievementItem {
+  title: string;
+  detail: string;
 }
 
 export interface SocialLinks {
@@ -64,11 +77,18 @@ export interface PortfolioData {
   links: SocialLinks;
   skills: SkillItem[];
   projects: ProjectItem[];
+  education: EducationItem[];
+  achievements: AchievementItem[];
   footer: {
     signOff: string;
   };
 }
 
+/**
+ * Tokyo Night / IDE-inspired accent map matching the design system.
+ * Use these hex values for border colors and 3D hard-offset shadows:
+ * `box-shadow: 4px 4px 0px <hex>`
+ */
 export const ACCENT_HEX: Record<AccentColor, string> = {
   cyan: "#7dcfff",
   mint: "#73daca",
@@ -78,13 +98,12 @@ export const ACCENT_HEX: Record<AccentColor, string> = {
   coral: "#f7768e",
   indigo: "#7aa2f7",
 };
-
 export const portfolioData: PortfolioData = {
   name: "Jitendra Kumar Rana",
   handle: "jit1006",
   location: "Bhopal, Madhya Pradesh, India",
-  npxCommand: "npx jit1006",
-  avatar: "/images/avatar.jpg",
+  npxCommand: "npx jit1006", // Publish an npm CLI card or replace with your preferred command
+  avatar: "/images/avatar.jpg", // TODO: Add your portrait photo in public/images/avatar.jpg
 
   tagline: {
     line1: "Developer.",
@@ -123,13 +142,13 @@ export const portfolioData: PortfolioData = {
   ],
 
   links: {
-    resume: "/resume.pdf",
+    resume: "https://drive.google.com/file/d/1y34jLqiHv-ON4SavQmQWDbkRKfTAVcHL/view?usp=sharing", // TODO: Place Jitendra Kumar Rana 06O.pdf in public/resume.pdf (or use a Drive link)
     email: "mailto:jitendrarananitbhopal@gmail.com",
     github: "https://github.com/jit1006",
     linkedin: "https://www.linkedin.com/in/jitendra-kumar-rana",
-    x: "",
-    discord: "",
-    instagram: "",
+    x: "", // TODO: Add your X/Twitter URL or omit to hide the icon
+    discord: "", // TODO: Add your Discord URL or omit to hide the icon
+    instagram: "https://www.instagram.com/_jk.rana/", // TODO: Add your Instagram URL or omit to hide the icon
   },
 
   skills: [
@@ -144,7 +163,7 @@ export const portfolioData: PortfolioData = {
     { name: "React.js", icon: "SiReact", category: "frontend", accent: "mint" },
     { name: "Tailwind CSS", icon: "SiTailwindcss", category: "frontend", accent: "mint" },
     { name: "HTML", icon: "SiHtml5", category: "frontend", accent: "mint" },
-    { name: "CSS", icon: "SiCss3", category: "frontend", accent: "mint" },
+    { name: "CSS", icon: "SiCss", category: "frontend", accent: "mint" },
     { name: "Node.js", icon: "SiNodedotjs", category: "backend", accent: "mint" },
     { name: "Express.js", icon: "SiExpress", category: "backend", accent: "mint" },
     { name: "RESTful APIs", icon: "Server", category: "backend", accent: "mint" },
@@ -198,12 +217,12 @@ export const portfolioData: PortfolioData = {
         "MySQL",
         "JWT",
       ],
-      githubUrl: "https://github.com/jit1006",
-      image: "/images/projects/prime-deal.png",
+      githubUrl: "https://github.com/jit1006", // TODO: Replace with exact Prime Deal repository URL
+      image: "/images/projects/prime-deal.png", // TODO: Add screenshot in public/images/projects/
     },
     {
       id: "skin-disease-detector",
-      title: "Skin Disease Detector",
+      title: "Skin Scan",
       subtitle: "CNN-based Image Classification",
       date: "01/2026",
       description:
@@ -225,11 +244,38 @@ export const portfolioData: PortfolioData = {
       ],
       githubUrl: "https://github.com/jit1006/Skin-scan",
       liveUrl: "https://huggingface.co/spaces/jkrrana/skin-di",
-      image: "/images/projects/skin-disease-detector.png",
+      image: "/images/projects/skinScan.png", // TODO: Add screenshot in public/images/projects/
+    },
+  ],
+
+  education: [
+    {
+      degree: "Master of Computer Application (MCA)",
+      institution: "Maulana Azad National Institute of Technology, Bhopal",
+      period: "Aug 2024 – Aug 2027",
+      score: "CGPA: 8.27",
+    },
+    {
+      degree: "Bachelor of Computer Application (BCA)",
+      institution: "Vinoba Bhave University, Hazaribagh",
+      period: "Aug 2020 – Aug 2023",
+      score: "CGPA: 7.39",
+    },
+  ],
+
+  achievements: [
+    {
+      title: "BNP Paribas Innoversité 3.0 Hackathon 2026",
+      detail:
+        "Selected for the Grand Finale and participated in the 24-hour offline hackathon.",
+    },
+    {
+      title: "NIMCET 2024",
+      detail: "Ranked 394 (All India Rank).",
     },
   ],
 
   footer: {
-    signOff: "Made with <3 , Thank You",
+    signOff: "Made with ❤️, Thank You",
   },
 };
